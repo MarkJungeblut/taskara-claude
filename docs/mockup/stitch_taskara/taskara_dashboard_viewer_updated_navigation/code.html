@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Taskara | Marketing Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#003a45",
+              "outline-variant": "#9eaec7",
+              "on-error-container": "#510017",
+              "secondary-dim": "#005867",
+              "secondary-container": "#65e1ff",
+              "tertiary": "#9e00b4",
+              "surface-container-high": "#d2e4ff",
+              "surface-container": "#dce9ff",
+              "primary-fixed": "#9396ff",
+              "surface-tint": "#4647d3",
+              "error-container": "#f74b6d",
+              "inverse-on-surface": "#8e9eb7",
+              "error-dim": "#a70138",
+              "primary-container": "#9396ff",
+              "secondary-fixed": "#65e1ff",
+              "on-primary-fixed-variant": "#0e009d",
+              "on-error": "#ffefef",
+              "surface-container-lowest": "#ffffff",
+              "primary-dim": "#3939c7",
+              "on-primary": "#f4f1ff",
+              "tertiary-dim": "#8a009e",
+              "surface": "#f4f6ff",
+              "inverse-surface": "#000f21",
+              "secondary-fixed-dim": "#48d4f3",
+              "on-tertiary-container": "#580065",
+              "tertiary-container": "#f487ff",
+              "on-primary-container": "#0a0081",
+              "surface-container-low": "#eaf1ff",
+              "on-tertiary": "#ffeefb",
+              "secondary": "#006576",
+              "on-secondary-fixed-variant": "#005969",
+              "on-surface": "#203044",
+              "on-primary-fixed": "#000000",
+              "surface-variant": "#c9deff",
+              "tertiary-fixed": "#f487ff",
+              "on-tertiary-fixed-variant": "#660075",
+              "on-secondary-container": "#004f5d",
+              "on-secondary": "#def7ff",
+              "primary": "#4647d3",
+              "surface-bright": "#f4f6ff",
+              "surface-container-highest": "#c9deff",
+              "primary-fixed-dim": "#8387ff",
+              "on-background": "#203044",
+              "inverse-primary": "#8083ff",
+              "tertiary-fixed-dim": "#ef6eff",
+              "on-tertiary-fixed": "#300038",
+              "error": "#b41340",
+              "background": "#f4f6ff",
+              "outline": "#68788f",
+              "surface-dim": "#bdd6fc",
+              "on-surface-variant": "#4d5d73"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .no-line { border: none !important; }
+        .tonal-layering { background-color: var(--tw-surface-container-low); }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-950 p-4 gap-2 z-50">
+<div class="mb-8 px-4 py-2">
+<h1 class="text-xl font-black text-slate-900 dark:text-slate-100 font-headline">Taskara</h1>
+<p class="text-xs uppercase tracking-wider text-on-surface-variant/70 font-label">Analytics Engine</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 rounded-xl px-4 py-3 shadow-sm transition-transform duration-200 translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-xs uppercase tracking-wider font-label font-bold">Overview</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800/50 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="text-xs uppercase tracking-wider font-label">Data Sources</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800/50 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span class="text-xs uppercase tracking-wider font-label">Archive</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-surface-container-highest rounded-xl">
+<div class="flex items-center gap-3 mb-3">
+<img class="w-10 h-10 rounded-full bg-surface-dim" data-alt="close-up of a smiling professional woman with glasses and dark hair against a soft studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjZ60UTAZnhMhvIOMac3OOLVUjftag269L4so_YArAiTcXNzlNYauJQ5FWONhlUh1Hh7pHsgOaK91eDsIip1zx1fq-nRddZ4MYw3sbCu5qS_8SpxSGAkKv_eRMt25BdFaLLewhjlbowFt2TBBv305CPYtVQI8K3r-0Ljx7F_CtbHOjWXtR3iLEzuyZgFVZtUrh0E6Y1BBoHEXF6vaMifW6fNqDpi9ouIjTmAW76vuOXSODmOoCulP_F0H4uW48zRXRKmEoLQUxYbWt"/>
+<div>
+<p class="text-xs font-bold text-on-surface">Premium Plan</p>
+<p class="text-[10px] text-on-surface-variant">Admin Access</p>
+</div>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="w-3/4 h-full bg-primary"></div>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-64 bg-surface-container-low min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl sticky top-0 z-40 w-full px-6 py-4 flex justify-between items-center no-line">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 font-headline">Taskara</span>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-indigo-600 dark:text-indigo-400 font-bold border-b-2 border-indigo-600 pb-1" href="#">Dashboards</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 mr-4">
+<button class="material-symbols-outlined text-slate-600 dark:text-slate-400 p-2 hover:text-indigo-500 transition-colors active:scale-90" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-slate-600 dark:text-slate-400 p-2 hover:text-indigo-500 transition-colors active:scale-90" data-icon="settings">settings</button>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30">
+<img class="w-8 h-8 rounded-full" data-alt="User profile thumbnail of a professional man in a navy suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx5-HLNccqrFRReiTApsluKpRVmmNAZSMElyaU5OC6RIoSMNAoSKqCNeBSLE0ZXFZdJz-I37BO67qE1PJALqiPvlNnu5Lf91XhCOrdusoMedBtg_0q4cYtkLw_Wz_rFA5jY0hpo2nE1tVhBVexOt2QtXk9BC_PYt7McsvM8AmgWOPyv8uOnYyj3FyEhLwOzsmURkSbGGSuKFOx0YaoeS288CYZU0nEAiaOG0m-cdM2g8xE9wyXsDGKfU5gh609UYaXVmn-vO6e2XqV"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-8 max-w-[1400px] mx-auto">
+<!-- Header Actions -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+<div>
+<span class="text-xs uppercase tracking-widest font-label font-bold text-on-surface-variant mb-2 block">Executive Report</span>
+<h2 class="text-4xl font-extrabold font-headline text-on-surface">Marketing Overview</h2>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-on-surface bg-surface-container-lowest font-label text-sm font-semibold hover:bg-surface-variant transition-colors active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="share">share</span>
+                            Share
+                        </button>
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-xl text-on-primary bg-gradient-to-br from-primary to-primary-container font-label text-sm font-semibold shadow-lg shadow-primary/20 hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+                            Edit Dashboard
+                        </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="bento-grid">
+<!-- Hero Metric: Conversions -->
+<div class="col-span-12 md:col-span-8 bg-surface-container-lowest rounded-3xl p-8 transition-transform hover:scale-[1.01] duration-300">
+<div class="flex justify-between items-start mb-10">
+<div>
+<h3 class="text-on-surface-variant text-sm font-bold uppercase tracking-wider font-label mb-1">Total Conversion Flow</h3>
+<p class="text-4xl font-extrabold font-headline">124,802</p>
+</div>
+<div class="flex gap-1">
+<div class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+                                    14.2%
+                                </div>
+</div>
+</div>
+<div class="h-64 flex items-end gap-2 px-2">
+<!-- Visual Chart Mock -->
+<div class="flex-1 bg-surface-container rounded-t-xl h-[40%] transition-all hover:h-[45%]"></div>
+<div class="flex-1 bg-surface-container rounded-t-xl h-[60%] transition-all hover:h-[65%]"></div>
+<div class="flex-1 bg-primary rounded-t-xl h-[85%] transition-all hover:h-[90%] relative group">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Peak Flow</div>
+</div>
+<div class="flex-1 bg-surface-container rounded-t-xl h-[55%] transition-all hover:h-[60%]"></div>
+<div class="flex-1 bg-surface-container rounded-t-xl h-[45%] transition-all hover:h-[50%]"></div>
+<div class="flex-1 bg-secondary rounded-t-xl h-[70%] transition-all hover:h-[75%]"></div>
+<div class="flex-1 bg-surface-container rounded-t-xl h-[50%] transition-all hover:h-[55%]"></div>
+<div class="flex-1 bg-surface-container rounded-t-xl h-[65%] transition-all hover:h-[70%]"></div>
+<div class="flex-1 bg-surface-container rounded-t-xl h-[40%] transition-all hover:h-[45%]"></div>
+<div class="flex-1 bg-tertiary rounded-t-xl h-[75%] transition-all hover:h-[80%]"></div>
+</div>
+</div>
+<!-- Secondary Metric: CAC -->
+<div class="col-span-12 md:col-span-4 bg-tertiary rounded-3xl p-8 text-on-tertiary flex flex-col justify-between">
+<div>
+<h3 class="text-on-tertiary/80 text-sm font-bold uppercase tracking-wider font-label mb-2">Acquisition Cost</h3>
+<p class="text-5xl font-black font-headline tracking-tighter">$14.20</p>
+</div>
+<div class="mt-8">
+<p class="text-xs font-medium mb-4 opacity-80">Campaign efficiency is 12% higher than Q3 average.</p>
+<div class="flex items-center -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-tertiary" data-alt="Portrait of a young professional person with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN2vdvPFKkw2YYBb6A1-ltEh6uhHfBOmD9_XZHfKuis7e3i3DCnGBmolsYD4NMWHK_y0pYXSlCGznGkjX65z0h65ZjKwfHUmHNozJlGxNrARZBe_wWE0faXrVcoCfPTTx_Iss59pz6opkH67dxjQp0htbS4_cWwOF8JOByGveTVoxhAfAmv2Pbd0Z7vLrgRH6b5rUBc0nQA40xzIkhehQc2hwa4NJcIsFWvn2eQ0Il1SJaSsnIsdm2Um3jYNOZrzq4BbMkkWr9WcsR"/>
+<img class="w-8 h-8 rounded-full border-2 border-tertiary" data-alt="Close up portrait of a middle-aged male professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6PXoeBn5ilJBlfgKH-hxRAvlybBvUN40Kb3UfUWTi-48vHxDlC5pwx8f0Mpdg7F_85xJW9TKFKD4DIfO7eqe3I0a3x27RjxhQU2SRR3RSnEjoysdir_va9qnHDc6Ahrsg9InX3hlWfuZLDcPHyydiKn6Owt2f80YOkWIPVAzJ3CV3wDZTz72ovpl2DsTkAGWU-cxjvkYdqQzeMXdN3A-aeL1bsXLIDy1WhL93fVQKEdyVK9YQbqR6ENkcM1A7G_1WaBveL2IGX2tl"/>
+<img class="w-8 h-8 rounded-full border-2 border-tertiary" data-alt="Portrait of a smiling woman with glasses in a studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsI9InYogln4aDicyBUKRwAzlm6gUXnDfJ5QiyfGpHpqbC8gBk8WrRTO4dlPIZrPBq1NbJPq65XQY0JpLGfCBT_bRV94TaNw130nuAcm0lvPMN6DM2l5JsjlXxgckLReoWKPrFmYkMJapYS35Ez69gzGWEvw-Txrg9hDhU4CL9XIAznGwoub-5nOZTmKs1IddDcFocAhmdEL77FAsaOPL0LusgFZY-8FVEtBhNrJYTlO7Q2d1PStyzXJhwGRyWCfotHWqOBGccWKzH"/>
+<div class="w-8 h-8 rounded-full bg-tertiary-container/30 border-2 border-tertiary flex items-center justify-center text-[10px] font-bold">+8</div>
+</div>
+</div>
+</div>
+<!-- Marketing Channels -->
+<div class="col-span-12 md:col-span-5 bg-surface-container-lowest rounded-3xl p-8">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-on-surface text-lg font-bold font-headline">Top Channels</h3>
+<button class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</button>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="text-sm font-bold">Social Media</span>
+<span class="text-sm font-medium">42%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="w-[42%] h-full bg-primary"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-secondary/5 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="text-sm font-bold">Email Campaigns</span>
+<span class="text-sm font-medium">31%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="w-[31%] h-full bg-secondary"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-tertiary/5 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="text-sm font-bold">Organic Search</span>
+<span class="text-sm font-medium">27%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="w-[27%] h-full bg-tertiary"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Geographical Impact Map -->
+<div class="col-span-12 md:col-span-7 bg-surface-container-lowest rounded-3xl overflow-hidden relative min-h-[300px]">
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<!-- Abstract Map Texture -->
+<img class="w-full h-full object-cover grayscale" data-alt="Abstract aerial view of topography lines and geometric map textures in soft grays" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvkjWc7UdvBPkza1qjuUpzmjbknI3K6ARpRtyYGNHKD4cqQTfhhO8b1BRd1e_wDlkxCJbVlFvHE9NA0a2fm6fuWNmLtUls0aZOhlhs-BmlzXAotknwR9MH9KrdsQXrkNjTQC6QKKQ18jJth-ANMGkTRj9-PgIhuwSv4dQbrBpT9eRRIyCZeJZae6kUbYqv3IYXJuUSomZqZAZhSkOGdtK0oGPB6N3dWeBl3FlmWG6aJ1FsAb9QjGGkZVl03imxcdGMvi5K1LnH8z0t"/>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col">
+<h3 class="text-on-surface text-lg font-bold font-headline mb-auto">Market Penetration</h3>
+<div class="grid grid-cols-2 gap-4 mt-8">
+<div class="bg-surface/60 backdrop-blur-md p-4 rounded-2xl">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">North America</p>
+<p class="text-xl font-bold">64.2%</p>
+</div>
+<div class="bg-surface/60 backdrop-blur-md p-4 rounded-2xl">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">Europe</p>
+<p class="text-xl font-bold">22.8%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
