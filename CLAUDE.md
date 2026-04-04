@@ -41,4 +41,4 @@ npm run lint       # ESLint
 - [AI collaboration](docs/guidelines/ai-collaboration.md)
 
 ## Plan Lifecycle
-When a plan is completed, archive it to `docs/plans/<NNN>-<slug>.md` using the template in `docs/plans/_template.md`, with `status: Completed` and all tasks checked off (`[x]`).
+When a plan is completed, archive it by **copying the session plan file verbatim** to `docs/plans/<NNN>-<slug>.md` and prepending a frontmatter block with `status: Completed`, `created`, and `updated` dates. Do NOT rewrite it from `docs/plans/_template.md` — the archive must be the exact plan that was implemented, preserving all context, design decisions, and detail.
