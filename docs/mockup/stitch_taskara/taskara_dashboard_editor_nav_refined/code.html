@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Taskara | Dashboard Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-secondary-fixed": "#003a45",
+            "outline-variant": "#9eaec7",
+            "on-error-container": "#510017",
+            "secondary-dim": "#005867",
+            "secondary-container": "#65e1ff",
+            "tertiary": "#9e00b4",
+            "surface-container-high": "#d2e4ff",
+            "surface-container": "#dce9ff",
+            "primary-fixed": "#9396ff",
+            "surface-tint": "#4647d3",
+            "error-container": "#f74b6d",
+            "inverse-on-surface": "#8e9eb7",
+            "error-dim": "#a70138",
+            "primary-container": "#9396ff",
+            "secondary-fixed": "#65e1ff",
+            "on-primary-fixed-variant": "#0e009d",
+            "on-error": "#ffefef",
+            "surface-container-lowest": "#ffffff",
+            "primary-dim": "#3939c7",
+            "on-primary": "#f4f1ff",
+            "tertiary-dim": "#8a009e",
+            "surface": "#f4f6ff",
+            "inverse-surface": "#000f21",
+            "secondary-fixed-dim": "#48d4f3",
+            "on-tertiary-container": "#580065",
+            "tertiary-container": "#f487ff",
+            "on-primary-container": "#0a0081",
+            "surface-container-low": "#eaf1ff",
+            "on-tertiary": "#ffeefb",
+            "secondary": "#006576",
+            "on-secondary-fixed-variant": "#005969",
+            "on-surface": "#203044",
+            "on-primary-fixed": "#000000",
+            "surface-variant": "#c9deff",
+            "tertiary-fixed": "#f487ff",
+            "on-tertiary-fixed-variant": "#660075",
+            "on-secondary-container": "#004f5d",
+            "on-secondary": "#def7ff",
+            "primary": "#4647d3",
+            "surface-bright": "#f4f6ff",
+            "surface-container-highest": "#c9deff",
+            "primary-fixed-dim": "#8387ff",
+            "on-background": "#203044",
+            "inverse-primary": "#8083ff",
+            "tertiary-fixed-dim": "#ef6eff",
+            "on-tertiary-fixed": "#300038",
+            "error": "#b41340",
+            "background": "#f4f6ff",
+            "outline": "#68788f",
+            "surface-dim": "#bdd6fc",
+            "on-surface-variant": "#4d5d73"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .dot-grid {
+      background-image: radial-gradient(circle, #9eaec7 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.15;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .ghost-border {
+      outline: 2px dashed rgba(158, 174, 199, 0.3);
+      outline-offset: 4px;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar - SideNavBar logic -->
+<aside class="hidden md:flex flex-col h-full w-64 bg-slate-100 dark:bg-slate-950 p-4 gap-2 z-20 shrink-0">
+<div class="flex flex-col px-4 mb-8">
+<h1 class="text-xl font-black text-slate-900 dark:text-slate-100 font-headline">Taskara</h1>
+<p class="text-xs uppercase tracking-wider font-label text-on-surface-variant opacity-70">Analytics Engine</p>
+</div>
+<nav class="flex flex-col gap-1">
+<!-- Overview item updated: inactive state -->
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800/50 rounded-xl transition-all group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label text-xs uppercase tracking-wider">Overview</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800/50 rounded-xl transition-all group" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label text-xs uppercase tracking-wider">Data Sources</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800/50 rounded-xl transition-all group" href="#">
+<span class="material-symbols-outlined">archive</span>
+<span class="font-label text-xs uppercase tracking-wider">Archive</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/10">
+<div class="bg-surface-container-high rounded-xl p-4">
+<p class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-2">Editor Status</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-tertiary"></span>
+<span class="text-sm font-semibold">Live Preview Mode</span>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex flex-col flex-1 overflow-hidden relative">
+<!-- Top Bar - TopNavBar logic -->
+<header class="bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl flex justify-between items-center w-full px-6 py-4 max-w-full sticky top-0 z-30">
+<div class="flex items-center gap-6">
+<div class="md:hidden text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 font-manrope">Taskara</div>
+<div class="hidden md:flex items-center gap-4">
+<!-- Header navigation: Back to Dashboards -->
+<a class="flex items-center gap-2 group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">arrow_back</span>
+<span class="font-label text-sm uppercase tracking-widest text-slate-400 group-hover:text-primary transition-colors">Dashboards</span>
+</a>
+<span class="text-slate-400">/</span>
+<span class="font-headline text-2xl font-bold text-slate-900">Marketing Overview</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<!-- Edit Actions -->
+<div class="flex items-center bg-surface-container-low rounded-xl p-1 gap-1">
+<button class="px-4 py-2 text-sm font-semibold text-on-surface hover:bg-surface-container-highest rounded-lg transition-colors">Exit Edit</button>
+<button class="px-6 py-2 text-sm font-bold text-on-primary bg-gradient-to-br from-primary to-primary-container rounded-lg shadow-sm hover:scale-[1.02] active:scale-95 transition-all">Save Changes</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/20 mx-2"></div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition-colors material-symbols-outlined">notifications</button>
+<button class="p-2 text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition-colors material-symbols-outlined">settings</button>
+<div class="ml-2 h-10 w-10 rounded-full overflow-hidden bg-surface-container-highest ring-2 ring-primary/10">
+<img class="h-full w-full object-cover" data-alt="professional portrait of a creative director in a minimalist studio environment with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWQtDUKUtZIlyuwPCNhbyT_ZYHU3pUdkv0Yf71S6PH-UorYzPLzEAWkcIwNx_ALAi2t9VU_26gFL4Wn4c7rYRRmVxx5g0BJ5sp1i1m2MwHfZ30ddBjmuEEPjIGXs6Iz1CLAJFn2QBqz9nNtFVYj2Nkbw72XFsAVazFRbt_15W4_rwT8X-Z7OVzKt5f7Gu3aoh9GfvU6FnTE3PULOouCWpkF0Rgc_4tKzhiB6rLz-XOpsXtIeIbgkEwnaW-x9l9dYpY95WBbjQ1Xjec"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto p-10 relative bg-surface-container-low">
+<!-- Edit Mode Texture -->
+<div class="absolute inset-0 dot-grid pointer-events-none"></div>
+<div class="max-w-7xl mx-auto flex flex-col gap-10 relative z-10">
+<!-- Editorial Header -->
+<div class="flex flex-col gap-1">
+<span class="font-label text-xs uppercase tracking-[0.2em] font-bold text-primary">Live Campaign Data</span>
+<h2 class="font-headline text-4xl font-extrabold text-on-surface tracking-tight">Marketing Performance <span class="text-tertiary">Live</span></h2>
+</div>
+<!-- 100% Width Table Widget -->
+<section class="group relative bg-surface-container-lowest rounded-[2rem] overflow-hidden p-8 transition-all hover:shadow-xl hover:shadow-primary/5 ghost-border">
+<!-- Widget Controls Overlay -->
+<div class="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 bg-white/90 backdrop-blur rounded-full text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined text-sm">open_with</button>
+<button class="p-2 bg-white/90 backdrop-blur rounded-full text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined text-sm">more_vert</button>
+</div>
+<div class="flex justify-between items-end mb-8">
+<div>
+<p class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Channel Breakdown</p>
+<h3 class="font-headline text-xl font-bold">Acquisition Metrics</h3>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container rounded-full text-[10px] font-bold text-primary uppercase">Direct</span>
+<span class="px-3 py-1 bg-tertiary-container rounded-full text-[10px] font-bold text-on-tertiary-container uppercase">Social</span>
+</div>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-separate border-spacing-y-4">
+<thead>
+<tr class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant opacity-60">
+<th class="pb-2 px-4">Channel</th>
+<th class="pb-2 px-4">Conversions</th>
+<th class="pb-2 px-4">Revenue</th>
+<th class="pb-2 px-4">CPC</th>
+<th class="pb-2 px-4">Status</th>
+</tr>
+</thead>
+<tbody class="font-body text-sm">
+<tr class="bg-surface hover:bg-surface-container-low transition-colors rounded-xl">
+<td class="py-4 px-4 font-bold rounded-l-xl">Paid Search</td>
+<td class="py-4 px-4">1,402</td>
+<td class="py-4 px-4">$12,450.00</td>
+<td class="py-4 px-4">$0.45</td>
+<td class="py-4 px-4 rounded-r-xl">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Scaling</span>
+</td>
+</tr>
+<tr class="bg-surface hover:bg-surface-container-low transition-colors rounded-xl">
+<td class="py-4 px-4 font-bold rounded-l-xl">Instagram Ads</td>
+<td class="py-4 px-4">3,291</td>
+<td class="py-4 px-4">$45,200.00</td>
+<td class="py-4 px-4">$1.20</td>
+<td class="py-4 px-4 rounded-r-xl">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">Optimizing</span>
+</td>
+</tr>
+<tr class="bg-surface hover:bg-surface-container-low transition-colors rounded-xl">
+<td class="py-4 px-4 font-bold rounded-l-xl">Twitter X</td>
+<td class="py-4 px-4">892</td>
+<td class="py-4 px-4">$3,100.00</td>
+<td class="py-4 px-4">$2.10</td>
+<td class="py-4 px-4 rounded-r-xl">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-error-container text-on-error-container">High Burn</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- 50/50 Charts Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Chart Widget 1 -->
+<section class="group relative bg-surface-container-lowest rounded-[2rem] p-8 transition-all hover:shadow-xl ghost-border">
+<!-- Widget Controls Overlay -->
+<div class="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 bg-white/90 backdrop-blur rounded-full text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined text-sm">open_with</button>
+<button class="p-2 bg-white/90 backdrop-blur rounded-full text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined text-sm">settings</button>
+</div>
+<div class="mb-8">
+<p class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Growth Forecast</p>
+<h3 class="font-headline text-xl font-bold">User Retention</h3>
+</div>
+<div class="relative h-48 w-full flex items-end gap-3 mt-4">
+<div class="w-full bg-surface-container rounded-t-lg h-[40%] transition-all group-hover:h-[45%]"></div>
+<div class="w-full bg-primary/20 rounded-t-lg h-[60%]"></div>
+<div class="w-full bg-primary/40 rounded-t-lg h-[75%]"></div>
+<div class="w-full bg-primary rounded-t-lg h-[65%] group-hover:bg-primary-container transition-colors"></div>
+<div class="w-full bg-primary-container rounded-t-lg h-[90%]"></div>
+<div class="w-full bg-tertiary-container rounded-t-lg h-[100%]"></div>
+<div class="w-full bg-tertiary rounded-t-lg h-[80%]"></div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] font-label text-on-surface-variant uppercase tracking-tighter">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</section>
+<!-- Chart Widget 2 -->
+<section class="group relative bg-surface-container-lowest rounded-[2rem] p-8 transition-all hover:shadow-xl ghost-border">
+<!-- Widget Controls Overlay -->
+<div class="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 bg-white/90 backdrop-blur rounded-full text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined text-sm">open_with</button>
+<button class="p-2 bg-white/90 backdrop-blur rounded-full text-on-surface-variant hover:text-primary transition-colors material-symbols-outlined text-sm">edit_square</button>
+</div>
+<div class="mb-8">
+<p class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Reach vs Conversion</p>
+<h3 class="font-headline text-xl font-bold">Organic Efficiency</h3>
+</div>
+<div class="flex items-center justify-center h-48 relative">
+<!-- Decorative Radial Graphic -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-40 h-40 border-[16px] border-surface-container-low rounded-full"></div>
+<div class="absolute w-40 h-40 border-[16px] border-t-tertiary border-r-tertiary-container border-l-transparent border-b-transparent rounded-full rotate-45"></div>
+</div>
+<div class="text-center z-10">
+<span class="block font-headline text-3xl font-black text-on-surface">74%</span>
+<span class="block font-label text-[10px] uppercase font-bold text-on-surface-variant">Efficiency Score</span>
+</div>
+</div>
+<div class="flex gap-4 mt-6 justify-center">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-[10px] font-label uppercase font-bold">Search</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span class="text-[10px] font-label uppercase font-bold">Referral</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Add Widget Area (Edit Mode Feature) -->
+<div class="w-full py-12 border-2 border-dashed border-outline-variant/30 rounded-[2rem] flex flex-col items-center justify-center gap-4 hover:bg-white/40 hover:border-primary/50 transition-all cursor-pointer group">
+<div class="h-14 w-14 rounded-full bg-surface-container-highest flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">add</span>
+</div>
+<div class="text-center">
+<p class="font-headline font-bold text-on-surface">Drop widget here</p>
+<p class="text-xs text-on-surface-variant">Choose from gallery or custom SQL</p>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for Editor Actions (Mobile/Contextual) -->
+<button class="fixed bottom-8 right-8 h-14 w-14 rounded-2xl bg-tertiary text-on-tertiary flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all md:hidden">
+<span class="material-symbols-outlined">add_chart</span>
+</button>
+</div>
+</div>
+</body></html>
