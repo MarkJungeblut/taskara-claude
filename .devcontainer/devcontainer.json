@@ -16,7 +16,8 @@
         "ms-dotnettools.csdevkit",
         "csharpier.csharpier-vscode",
         "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "anthropic.claude-code"
       ],
       "settings": {
         "editor.formatOnSave": true,
