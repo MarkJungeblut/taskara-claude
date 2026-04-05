@@ -61,12 +61,14 @@ export function AppHeader() {
           </div>
         )}
         {dashboardIdMatch && !editorMatch && (
-          <button
-            onClick={() => navigate(`/dashboard/${dashboardId}/edit`)}
-            className="px-6 py-2 text-sm font-bold text-on-primary bg-gradient-to-br from-primary to-primary-container rounded-lg shadow-sm hover:scale-[1.02] active:scale-95 transition-all"
-          >
-            Edit
-          </button>
+          <div className="p-1">
+            <button
+              onClick={() => navigate(`/dashboard/${dashboardId}/edit`)}
+              className="px-6 py-2 text-sm font-bold text-on-primary bg-gradient-to-br from-primary to-primary-container rounded-lg shadow-sm hover:scale-[1.02] active:scale-95 transition-all"
+            >
+              Edit
+            </button>
+          </div>
         )}
       </div>
     </header>
