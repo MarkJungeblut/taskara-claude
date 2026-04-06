@@ -37,7 +37,7 @@ function PreviewThumbnail({ variant }: { variant: PreviewVariant }) {
         )}
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-        <span className="text-xs font-semibold text-primary">Preview Layout</span>
+        <span className="text-xs font-semibold text-primary">Open Dashboard</span>
       </div>
     </div>
   );
