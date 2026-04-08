@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useMatch, useNavigate } from 'react-router-dom';
+import { useDashboardTitles } from '../../features/dashboards/DashboardTitlesContext';
 
 function formatDashboardName(id: string): string {
   return id
@@ -14,14 +15,13 @@ export function AppHeader() {
   const dashboardId = dashboardIdMatch?.params.id;
   const dashboardName = dashboardId ? formatDashboardName(dashboardId) : '';
 
-  // Store custom titles keyed by dashboard id; falls back to formatted id
-  const [customTitles, setCustomTitles] = useState<Map<string, string>>(new Map());
+  const { getTitle, setTitle } = useDashboardTitles();
   // Track which dashboard id is being edited (naturally resets on navigation)
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState('');
 
   const isEditing = editingId === dashboardId && dashboardId != null;
-  const displayTitle = dashboardId ? (customTitles.get(dashboardId) ?? dashboardName) : '';
+  const displayTitle = dashboardId ? getTitle(dashboardId, dashboardName) : '';
 
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ export function AppHeader() {
   function commitTitle() {
     const trimmed = editValue.trim();
     if (dashboardId) {
-      setCustomTitles(prev => new Map(prev).set(dashboardId, trimmed || dashboardName));
+      setTitle(dashboardId, trimmed || dashboardName);
     }
     setEditingId(null);
   }

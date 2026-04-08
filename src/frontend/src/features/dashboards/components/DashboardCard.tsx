@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Dashboard, PreviewVariant } from '../types';
+import { useDashboardTitles } from '../DashboardTitlesContext';
 
 function PreviewThumbnail({ variant }: { variant: PreviewVariant }) {
   return (
@@ -44,13 +45,14 @@ function PreviewThumbnail({ variant }: { variant: PreviewVariant }) {
 }
 
 export function DashboardCard({ id, title, subtitle, preview }: Dashboard) {
+  const { getTitle } = useDashboardTitles();
   return (
     <Link to={`/dashboard/${id}`} className="block group">
       <div className="bg-surface-container-lowest rounded-xl p-6 transition-all duration-300 hover:bg-white border border-transparent hover:border-outline-variant/10 cursor-pointer">
         <PreviewThumbnail variant={preview} />
         <div className="flex justify-between items-start">
           <div>
-            <h3 className="font-headline text-lg font-bold text-on-surface">{title}</h3>
+            <h3 className="font-headline text-lg font-bold text-on-surface">{getTitle(id, title)}</h3>
             <p className="text-sm text-on-surface-variant mt-1">{subtitle}</p>
           </div>
           <button
