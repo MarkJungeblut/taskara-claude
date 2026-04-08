@@ -6,3 +6,11 @@ export interface Dashboard {
   subtitle: string;
   preview: PreviewVariant;
 }
+
+export type WidgetType = 'table' | 'line-chart' | 'pie-chart' | 'bar-chart';
+export type WidgetLayoutScale = 'split' | 'full';
+
+export interface WidgetConfig {
+  type: WidgetType;
+  layoutScale: WidgetLayoutScale;
+}

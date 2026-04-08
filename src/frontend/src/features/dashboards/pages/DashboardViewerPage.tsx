@@ -1,6 +1,15 @@
+import { useState } from 'react';
+import { AddWidgetDialog } from '../components/AddWidgetDialog';
 import { GhostWidgetIllustration } from '../components/GhostWidgetIllustration';
+import type { WidgetConfig } from '../types';
 
 export default function DashboardViewerPage() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  function handleWidgetAdd(config: WidgetConfig) {
+    console.log('Widget added:', config);
+  }
+
   return (
     <div
       className="flex-1 flex items-center justify-center bg-surface min-h-0"
@@ -24,11 +33,20 @@ export default function DashboardViewerPage() {
         </p>
 
         {/* Primary action button */}
-        <button className="flex items-center gap-2 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold uppercase tracking-wider text-sm px-8 py-3 rounded-xl shadow-md hover:scale-105 active:scale-95 transition-all">
+        <button
+          onClick={() => setDialogOpen(true)}
+          className="flex items-center gap-2 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold uppercase tracking-wider text-sm px-8 py-3 rounded-xl shadow-md hover:scale-105 active:scale-95 transition-all"
+        >
           <span className="material-symbols-outlined text-[18px]">add</span>
           Add your first widget
         </button>
       </div>
+
+      <AddWidgetDialog
+        open={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        onAdd={handleWidgetAdd}
+      />
     </div>
   );
 }
