@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useMatch, useNavigate } from 'react-router-dom';
-import { useDashboardTitles } from '../../features/dashboards/context/DashboardTitlesContext';
+import { useDashboardTitles } from '../../features/dashboards/context/useDashboardTitles';
 
 function formatDashboardName(id: string): string {
   return id

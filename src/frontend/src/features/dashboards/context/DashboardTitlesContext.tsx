@@ -1,9 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
-const DashboardTitlesContext = createContext<{
+export const DashboardTitlesContext = createContext<{
   getTitle: (id: string, fallback: string) => string;
   setTitle: (id: string, title: string) => void;
-}>({ getTitle: (_, fb) => fb, setTitle: () => {} });
+}>({ getTitle: (_, fb) => fb, setTitle: () => { } });
 
 export function DashboardTitlesProvider({ children }: { children: React.ReactNode }) {
   const [titles, setTitles] = useState<Map<string, string>>(new Map());
@@ -18,6 +18,3 @@ export function DashboardTitlesProvider({ children }: { children: React.ReactNod
     </DashboardTitlesContext.Provider>
   );
 }
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const useDashboardTitles = () => useContext(DashboardTitlesContext);
