@@ -3,7 +3,7 @@ import { Layout } from "./shared/components/Layout";
 import DashboardListPage from "./features/dashboards/pages/DashboardListPage";
 import DashboardViewerPage from "./features/dashboards/pages/DashboardViewerPage";
 import DashboardEditorPage from "./features/dashboards/pages/DashboardEditorPage";
-import { DashboardTitlesProvider } from "./features/dashboards/DashboardTitlesContext";
+import { DashboardTitlesProvider } from "./features/dashboards/context/DashboardTitlesContext";
 
 export function App() {
   return (
