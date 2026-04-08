@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Dashboard, PreviewVariant } from '../types';
-import { useDashboardTitles } from '../context/useDashboardTitles';
+import { useDashboardTitles } from '../context/DashboardTitlesContext';
 
 function PreviewThumbnail({ variant }: { variant: PreviewVariant }) {
   return (

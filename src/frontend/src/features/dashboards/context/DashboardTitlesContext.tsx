@@ -1,9 +1,12 @@
-import { createContext, useState } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext, useState } from 'react';
 
-export const DashboardTitlesContext = createContext<{
+const DashboardTitlesContext = createContext<{
   getTitle: (id: string, fallback: string) => string;
   setTitle: (id: string, title: string) => void;
 }>({ getTitle: (_, fb) => fb, setTitle: () => { } });
+
+export const useDashboardTitles = () => useContext(DashboardTitlesContext);
 
 export function DashboardTitlesProvider({ children }: { children: React.ReactNode }) {
   const [titles, setTitles] = useState<Map<string, string>>(new Map());
