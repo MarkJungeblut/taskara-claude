@@ -41,4 +41,4 @@ npm run lint       # ESLint
 - [AI collaboration](docs/guidelines/ai-collaboration.md)
 
 ## Plan Lifecycle
-When a plan is completed, archive it to `docs/plans/<NNN>-<slug>.md` using the template in `docs/plans/_template.md`, with `status: Completed` and all tasks checked off (`[x]`).
+Use `/plan` for all non-trivial changes. It covers the full workflow: branch creation → plan mode → implement → archive to `docs/plans/`. See `.claude/skills/plan/SKILL.md` for details.
