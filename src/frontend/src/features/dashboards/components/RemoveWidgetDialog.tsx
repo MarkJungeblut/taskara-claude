@@ -43,18 +43,13 @@ export function RemoveWidgetDialog({ open, widgetTitle, onClose, onConfirm }: Re
               <span className="material-symbols-outlined text-lg">close</span>
             </button>
           </div>
-          <p className="text-on-surface-variant font-body">
+          <p className="mt-4 text-on-surface-variant font-body">
             Are you sure you want to remove <strong>{widgetTitle}</strong>? This action cannot be undone.
           </p>
         </div>
 
-        {/* Icon */}
-        <div className="px-8 py-6 flex justify-center">
-          <span className="material-symbols-outlined text-error text-5xl">delete_forever</span>
-        </div>
-
         {/* Footer */}
-        <div className="px-8 py-6 bg-surface-container-low flex justify-end items-center gap-4">
+        <div className="px-8 py-4 bg-surface-container-low flex justify-end items-center gap-4">
           <button
             onClick={onClose}
             className="px-6 py-3 text-on-surface-variant font-label font-bold hover:text-on-surface transition-colors"
