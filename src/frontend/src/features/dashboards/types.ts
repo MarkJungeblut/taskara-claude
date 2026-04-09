@@ -14,3 +14,9 @@ export interface WidgetConfig {
   type: WidgetType;
   layoutScale: WidgetLayoutScale;
 }
+
+export interface WidgetInstance {
+  id: string;
+  type: WidgetType;
+  layoutScale: WidgetLayoutScale;
+}
