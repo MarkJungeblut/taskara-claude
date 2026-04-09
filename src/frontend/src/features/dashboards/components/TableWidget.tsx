@@ -23,9 +23,11 @@ function StatusBadge({ status }: { status: EmployeeStatus }) {
 
 interface TableWidgetProps {
   layoutScale: WidgetLayoutScale;
+  title: string;
+  onEdit: () => void;
 }
 
-export function TableWidget({ layoutScale }: TableWidgetProps) {
+export function TableWidget({ layoutScale, title, onEdit }: TableWidgetProps) {
   const isFull = layoutScale === 'full';
 
   return (
@@ -34,11 +36,20 @@ export function TableWidget({ layoutScale }: TableWidgetProps) {
       <div className="flex items-center justify-between px-5 py-4 border-b border-outline-variant/10">
         <div className="flex items-center gap-2.5">
           <span className="material-symbols-outlined text-primary text-[20px]">table_rows</span>
-          <span className="font-headline font-bold text-on-surface text-sm">Team Directory</span>
+          <span className="font-headline font-bold text-on-surface text-sm">{title}</span>
         </div>
-        <span className="text-xs text-on-surface-variant font-medium">
-          {MOCK_EMPLOYEES.length} records
-        </span>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onEdit}
+            title="Edit widget"
+            className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface"
+          >
+            <span className="material-symbols-outlined text-[16px]">edit</span>
+          </button>
+          <span className="text-xs text-on-surface-variant font-medium">
+            {MOCK_EMPLOYEES.length} records
+          </span>
+        </div>
       </div>
 
       {/* Table */}

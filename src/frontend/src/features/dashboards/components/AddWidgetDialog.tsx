@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import type { WidgetConfig, WidgetLayoutScale, WidgetType } from '../types';
+import type { WidgetConfig, WidgetInstance, WidgetLayoutScale, WidgetType } from '../types';
+import { generateWidgetTitle } from '../utils/generateWidgetTitle';
 
 interface AddWidgetDialogProps {
   open: boolean;
   onClose: () => void;
   onAdd: (config: WidgetConfig) => void;
+  editWidget?: WidgetInstance;
 }
 
 const WIDGET_TYPES: { type: WidgetType; label: string; icon: string; iconColor: string }[] = [
@@ -14,18 +16,32 @@ const WIDGET_TYPES: { type: WidgetType; label: string; icon: string; iconColor: 
   { type: 'bar-chart', label: 'Bar Chart', icon: 'bar_chart', iconColor: 'text-on-secondary-container' },
 ];
 
-export function AddWidgetDialog({ open, onClose, onAdd }: AddWidgetDialogProps) {
-  const [selectedType, setSelectedType] = useState<WidgetType>('table');
-  const [selectedScale, setSelectedScale] = useState<WidgetLayoutScale>('split');
+export function AddWidgetDialog({ open, onClose, onAdd, editWidget }: AddWidgetDialogProps) {
+  const isEditMode = editWidget !== undefined;
+
+  const initialType = editWidget?.type ?? 'table';
+  const [title, setTitle] = useState(editWidget?.title ?? '');
+  const [titlePlaceholder, setTitlePlaceholder] = useState(() => generateWidgetTitle(initialType));
+  const [selectedType, setSelectedType] = useState<WidgetType>(initialType);
+  const [selectedScale, setSelectedScale] = useState<WidgetLayoutScale>(editWidget?.layoutScale ?? 'split');
+
+  function handleTypeChange(type: WidgetType) {
+    setSelectedType(type);
+    if (!title.trim()) {
+      setTitlePlaceholder(generateWidgetTitle(type));
+    }
+  }
 
   function handleClose() {
-    setSelectedType('table');
-    setSelectedScale('split');
     onClose();
   }
 
   function handleAdd() {
-    onAdd({ type: selectedType, layoutScale: selectedScale });
+    onAdd({
+      type: selectedType,
+      layoutScale: selectedScale,
+      title: title.trim() || titlePlaceholder,
+    });
     handleClose();
   }
 
@@ -65,21 +81,43 @@ export function AddWidgetDialog({ open, onClose, onAdd }: AddWidgetDialogProps) 
             </button>
           </div>
           <p className="text-on-surface-variant font-body">
-            Craft a custom data perspective for your dashboard in two simple steps.
+            {isEditMode
+              ? 'Adjust the name and layout of your widget.'
+              : 'Craft a custom data perspective for your dashboard in three simple steps.'}
           </p>
         </div>
 
         {/* Steps */}
         <div className="p-8 bg-surface-container-lowest overflow-y-auto max-h-[70vh]">
-          {/* Step 1: Widget Type */}
+          {/* Step 1: Widget Name */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-6">
               <span className="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shadow-md shadow-primary/20">
                 1
               </span>
+              <h3 className="text-xl font-headline font-bold text-on-surface">Widget Name</h3>
+            </div>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder={titlePlaceholder}
+              className="w-full px-4 py-3 rounded-2xl border-2 border-outline-variant/30 bg-surface-container-low text-on-surface font-body placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"
+            />
+            <p className="mt-2 text-xs text-on-surface-variant/60 font-body">
+              Leave blank to use the suggested name
+            </p>
+          </section>
+
+          {/* Step 2: Widget Type */}
+          <section className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shadow-md shadow-primary/20">
+                2
+              </span>
               <h3 className="text-xl font-headline font-bold text-on-surface">Widget Type</h3>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className={`grid grid-cols-2 sm:grid-cols-4 gap-4 ${isEditMode ? 'pointer-events-none opacity-60' : ''}`}>
               {WIDGET_TYPES.map(({ type, label, icon, iconColor }) => (
                 <label key={type} className="relative cursor-pointer group">
                   <input
@@ -87,8 +125,9 @@ export function AddWidgetDialog({ open, onClose, onAdd }: AddWidgetDialogProps) 
                     name="widget_type"
                     value={type}
                     checked={selectedType === type}
-                    onChange={() => setSelectedType(type)}
+                    onChange={() => handleTypeChange(type)}
                     className="peer sr-only"
+                    disabled={isEditMode}
                   />
                   <div className="p-4 rounded-2xl border-2 border-transparent bg-surface-container-low transition-all peer-checked:border-primary peer-checked:bg-primary/5 hover:bg-surface-container-high flex flex-col items-center">
                     <div className="w-full aspect-square bg-white rounded-xl mb-3 flex items-center justify-center shadow-sm border border-outline-variant/10 group-hover:scale-105 transition-transform">
@@ -105,11 +144,11 @@ export function AddWidgetDialog({ open, onClose, onAdd }: AddWidgetDialogProps) 
             </div>
           </section>
 
-          {/* Step 2: Layout Scale */}
+          {/* Step 3: Layout Scale */}
           <section>
             <div className="flex items-center gap-3 mb-6">
               <span className="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shadow-md shadow-primary/20">
-                2
+                3
               </span>
               <h3 className="text-xl font-headline font-bold text-on-surface">Layout Scale</h3>
             </div>
@@ -180,8 +219,10 @@ export function AddWidgetDialog({ open, onClose, onAdd }: AddWidgetDialogProps) 
             onClick={handleAdd}
             className="bg-primary text-on-primary px-10 py-4 rounded-2xl font-label font-extrabold shadow-xl shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2"
           >
-            <span>Add to Canvas</span>
-            <span className="material-symbols-outlined text-lg">auto_awesome</span>
+            <span>{isEditMode ? 'Save Changes' : 'Add to Canvas'}</span>
+            <span className="material-symbols-outlined text-lg">
+              {isEditMode ? 'check' : 'auto_awesome'}
+            </span>
           </button>
         </div>
       </div>
