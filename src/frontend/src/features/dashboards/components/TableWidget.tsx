@@ -10,9 +10,7 @@ const DATE_FORMAT = new Intl.DateTimeFormat('en-GB', {
 
 const STATUS_STYLES: Record<EmployeeStatus, string> = {
   Active:   'bg-secondary/10 text-secondary',
-  Remote:   'bg-primary/10 text-primary',
-  'On Leave': 'bg-tertiary/10 text-tertiary',
-  Contract: 'bg-error/10 text-error',
+  Inactive: 'bg-error/10 text-error',
 };
 
 function StatusBadge({ status }: { status: EmployeeStatus }) {
