@@ -1,7 +1,7 @@
 ---
 status: Completed
 created: 2026-04-09
-updated: 2026-04-09
+updated: 2026-04-09 (revised after implementation)
 ---
 
 # Plan: Widget Title
@@ -20,13 +20,13 @@ Add `title: string` to both `WidgetConfig` and `WidgetInstance`.
 ```
 src/frontend/src/features/dashboards/utils/generateWidgetTitle.ts
 ```
-- `ADJECTIVES`: ~20 vivid one-word adjectives (e.g. jolly, brave, nimble, cosmic, vivid…)
-- `NOUNS_BY_TYPE: Record<WidgetType, string[]>` — type-aware nouns:
-  - `table` → Directory, Register, Roster, Ledger, Catalog
-  - `line-chart` → Trend, Trajectory, Timeline, Waveline, Projection
-  - `pie-chart` → Breakdown, Composition, Slice, Share, Distribution
-  - `bar-chart` → Comparison, Ranking, Benchmark, Tally, Snapshot
-- `generateWidgetTitle(type: WidgetType): string` — picks a random adjective + random noun for the type, returns e.g. `"Jolly Directory"`.
+- `ADJECTIVES`: ~20 vivid one-word adjectives (e.g. Jolly, Brave, Nimble, Cosmic, Vivid…)
+- `TYPE_LABEL: Record<WidgetType, string>` — maps each type directly to its display name:
+  - `table` → "Table"
+  - `line-chart` → "Line Chart"
+  - `pie-chart` → "Pie Chart"
+  - `bar-chart` → "Bar Chart"
+- `generateWidgetTitle(type: WidgetType): string` — picks a random adjective + the type label, returns e.g. `"Jolly Table"`, `"Brave Pie Chart"`.
 
 ### 3. Update `AddWidgetDialog.tsx`
 **New props:**
@@ -64,7 +64,7 @@ Since `titlePlaceholder` depends on `selectedType`, generate the initial placeho
 - Add `title: string` to `TableWidgetProps`
 - Add `onEdit: () => void` to `TableWidgetProps`
 - Replace hardcoded `"Team Directory"` with `{title}`
-- Add an edit icon button in the header (appears on hover using `group/header` + `opacity-0 group-hover/header:opacity-100`):
+- Add an edit icon button in the header — always visible:
   ```tsx
   <button onClick={onEdit} title="Edit widget" className="...">
     <span className="material-symbols-outlined text-[16px]">edit</span>
@@ -107,7 +107,8 @@ Since `titlePlaceholder` depends on `selectedType`, generate the initial placeho
 | `src/frontend/src/features/dashboards/types.ts` | Add `title` to `WidgetConfig` + `WidgetInstance` |
 | `src/frontend/src/features/dashboards/utils/generateWidgetTitle.ts` | **New** — title generator |
 | `src/frontend/src/features/dashboards/components/AddWidgetDialog.tsx` | Step 3 (title input), edit mode |
-| `src/frontend/src/features/dashboards/components/TableWidget.tsx` | `title` + `onEdit` props, hover edit button |
+| `src/frontend/src/features/dashboards/components/TableWidget.tsx` | `title` + `onEdit` props, always-visible edit button |
+| `src/frontend/src/shared/components/AppHeader.tsx` | Remove dashboard edit-mode route button and `navigate` logic |
 | `src/frontend/src/features/dashboards/components/WidgetCanvas.tsx` | Pass `title` + `onEditWidget` callback |
 | `src/frontend/src/features/dashboards/pages/DashboardViewerPage.tsx` | `editingWidget` state, wire edit flow |
 
