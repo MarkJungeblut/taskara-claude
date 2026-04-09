@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AddWidgetDialog } from '../components/AddWidgetDialog';
+import { RemoveWidgetDialog } from '../components/RemoveWidgetDialog';
 import { GhostWidgetIllustration } from '../components/GhostWidgetIllustration';
 import { WidgetCanvas } from '../components/WidgetCanvas';
 import type { WidgetConfig, WidgetInstance } from '../types';
@@ -12,6 +13,7 @@ const DOTTED_BG = {
 export default function DashboardViewerPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingWidget, setEditingWidget] = useState<WidgetInstance | null>(null);
+  const [deletingWidget, setDeletingWidget] = useState<WidgetInstance | null>(null);
   const [widgets, setWidgets] = useState<WidgetInstance[]>([]);
 
   function handleWidgetAdd(config: WidgetConfig) {
@@ -25,6 +27,13 @@ export default function DashboardViewerPage() {
       prev.map((w) => (w.id === target.id ? { ...w, ...config } : w)),
     );
     setEditingWidget(null);
+  }
+
+  function handleWidgetDelete() {
+    const target = deletingWidget;
+    if (!target) return;
+    setWidgets((prev) => prev.filter((w) => w.id !== target.id));
+    setDeletingWidget(null);
   }
 
   return (
@@ -74,7 +83,7 @@ export default function DashboardViewerPage() {
 
           {/* Scrollable canvas */}
           <div className="flex-1 overflow-y-auto min-h-0" style={DOTTED_BG}>
-            <WidgetCanvas widgets={widgets} onEditWidget={setEditingWidget} />
+            <WidgetCanvas widgets={widgets} onEditWidget={setEditingWidget} onDeleteWidget={setDeletingWidget} />
           </div>
         </>
       )}
@@ -85,6 +94,12 @@ export default function DashboardViewerPage() {
         onClose={() => { setDialogOpen(false); setEditingWidget(null); }}
         onAdd={editingWidget ? handleWidgetEdit : handleWidgetAdd}
         editWidget={editingWidget ?? undefined}
+      />
+      <RemoveWidgetDialog
+        open={deletingWidget !== null}
+        widgetTitle={deletingWidget?.title ?? ''}
+        onClose={() => setDeletingWidget(null)}
+        onConfirm={handleWidgetDelete}
       />
     </div>
   );

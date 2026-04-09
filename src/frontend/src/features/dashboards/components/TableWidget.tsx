@@ -25,9 +25,10 @@ interface TableWidgetProps {
   layoutScale: WidgetLayoutScale;
   title: string;
   onEdit: () => void;
+  onDelete: () => void;
 }
 
-export function TableWidget({ layoutScale, title, onEdit }: TableWidgetProps) {
+export function TableWidget({ layoutScale, title, onEdit, onDelete }: TableWidgetProps) {
   const isFull = layoutScale === 'full';
 
   return (
@@ -45,6 +46,13 @@ export function TableWidget({ layoutScale, title, onEdit }: TableWidgetProps) {
             className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface"
           >
             <span className="material-symbols-outlined text-[16px]">edit</span>
+          </button>
+          <button
+            onClick={onDelete}
+            title="Remove widget"
+            className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-error/10 text-on-surface-variant hover:text-error"
+          >
+            <span className="material-symbols-outlined text-[16px]">delete</span>
           </button>
           <span className="text-xs text-on-surface-variant font-medium">
             {MOCK_EMPLOYEES.length} records

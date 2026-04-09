@@ -4,9 +4,10 @@ import { TableWidget } from './TableWidget';
 interface WidgetCanvasProps {
   widgets: WidgetInstance[];
   onEditWidget: (widget: WidgetInstance) => void;
+  onDeleteWidget: (widget: WidgetInstance) => void;
 }
 
-export function WidgetCanvas({ widgets, onEditWidget }: WidgetCanvasProps) {
+export function WidgetCanvas({ widgets, onEditWidget, onDeleteWidget }: WidgetCanvasProps) {
   return (
     <div className="grid grid-cols-2 gap-6 p-6">
       {widgets.map((widget) => (
@@ -19,6 +20,7 @@ export function WidgetCanvas({ widgets, onEditWidget }: WidgetCanvasProps) {
               layoutScale={widget.layoutScale}
               title={widget.title}
               onEdit={() => onEditWidget(widget)}
+              onDelete={() => onDeleteWidget(widget)}
             />
           )}
         </div>
