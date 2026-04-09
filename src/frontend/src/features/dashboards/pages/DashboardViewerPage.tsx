@@ -11,10 +11,20 @@ const DOTTED_BG = {
 
 export default function DashboardViewerPage() {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [editingWidget, setEditingWidget] = useState<WidgetInstance | null>(null);
   const [widgets, setWidgets] = useState<WidgetInstance[]>([]);
 
   function handleWidgetAdd(config: WidgetConfig) {
     setWidgets((prev) => [...prev, { id: crypto.randomUUID(), ...config }]);
+  }
+
+  function handleWidgetEdit(config: WidgetConfig) {
+    const target = editingWidget;
+    if (!target) return;
+    setWidgets((prev) =>
+      prev.map((w) => (w.id === target.id ? { ...w, ...config } : w)),
+    );
+    setEditingWidget(null);
   }
 
   return (
@@ -64,15 +74,17 @@ export default function DashboardViewerPage() {
 
           {/* Scrollable canvas */}
           <div className="flex-1 overflow-y-auto min-h-0" style={DOTTED_BG}>
-            <WidgetCanvas widgets={widgets} />
+            <WidgetCanvas widgets={widgets} onEditWidget={setEditingWidget} />
           </div>
         </>
       )}
 
       <AddWidgetDialog
-        open={dialogOpen}
-        onClose={() => setDialogOpen(false)}
-        onAdd={handleWidgetAdd}
+        key={editingWidget?.id ?? 'new'}
+        open={dialogOpen || editingWidget !== null}
+        onClose={() => { setDialogOpen(false); setEditingWidget(null); }}
+        onAdd={editingWidget ? handleWidgetEdit : handleWidgetAdd}
+        editWidget={editingWidget ?? undefined}
       />
     </div>
   );

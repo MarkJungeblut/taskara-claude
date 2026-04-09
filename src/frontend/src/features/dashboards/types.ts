@@ -13,10 +13,12 @@ export type WidgetLayoutScale = 'split' | 'full';
 export interface WidgetConfig {
   type: WidgetType;
   layoutScale: WidgetLayoutScale;
+  title: string;
 }
 
 export interface WidgetInstance {
   id: string;
   type: WidgetType;
   layoutScale: WidgetLayoutScale;
+  title: string;
 }
