@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useMatch, useNavigate } from 'react-router-dom';
+import { Link, useMatch } from 'react-router-dom';
 import { useDashboardTitles } from '../../features/dashboards/context/DashboardTitlesContext';
 
 function formatDashboardName(id: string): string {
@@ -9,7 +9,6 @@ function formatDashboardName(id: string): string {
 }
 
 export function AppHeader() {
-  const editorMatch = useMatch('/dashboard/:id/edit');
   const dashboardIdMatch = useMatch({ path: '/dashboard/:id', end: false });
 
   const dashboardId = dashboardIdMatch?.params.id;
@@ -22,8 +21,6 @@ export function AppHeader() {
 
   const isEditing = editingId === dashboardId && dashboardId != null;
   const displayTitle = dashboardId ? getTitle(dashboardId, dashboardName) : '';
-
-  const navigate = useNavigate();
 
   function startEditing() {
     setEditValue(displayTitle);
@@ -110,34 +107,7 @@ export function AppHeader() {
         )}
       </div>
 
-      <div className="flex items-center">
-        {editorMatch && (
-          <div className="flex items-center bg-surface-container-low rounded-xl p-1 gap-1">
-            <button
-              onClick={() => navigate(`/dashboard/${dashboardId}`)}
-              className="px-6 py-2 text-sm font-bold text-on-primary bg-gradient-to-br from-primary to-primary-container rounded-lg shadow-sm hover:scale-[1.02] active:scale-95 transition-all"
-            >
-              Save Changes
-            </button>
-            <button
-              onClick={() => navigate(`/dashboard/${dashboardId}`)}
-              className="px-4 py-2 text-sm font-semibold text-on-surface hover:bg-surface-container-highest rounded-lg transition-colors"
-            >
-              Cancel
-            </button>
-          </div>
-        )}
-        {dashboardIdMatch && !editorMatch && (
-          <div className="p-1">
-            <button
-              onClick={() => navigate(`/dashboard/${dashboardId}/edit`)}
-              className="px-6 py-2 text-sm font-bold text-on-primary bg-gradient-to-br from-primary to-primary-container rounded-lg shadow-sm hover:scale-[1.02] active:scale-95 transition-all"
-            >
-              Edit
-            </button>
-          </div>
-        )}
-      </div>
+      <div className="flex items-center" />
     </header>
   );
 }

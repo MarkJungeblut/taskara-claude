@@ -7,11 +7,11 @@ const ADJECTIVES = [
   'Quick', 'Radiant', 'Serene', 'Swift', 'Vivid',
 ];
 
-const NOUNS_BY_TYPE: Record<WidgetType, string[]> = {
-  'table':      ['Catalog', 'Directory', 'Ledger', 'Register', 'Roster'],
-  'line-chart': ['Projection', 'Timeline', 'Trajectory', 'Trend', 'Waveline'],
-  'pie-chart':  ['Breakdown', 'Composition', 'Distribution', 'Share', 'Slice'],
-  'bar-chart':  ['Benchmark', 'Comparison', 'Ranking', 'Snapshot', 'Tally'],
+const TYPE_LABEL: Record<WidgetType, string> = {
+  'table':      'Table',
+  'line-chart': 'Line Chart',
+  'pie-chart':  'Pie Chart',
+  'bar-chart':  'Bar Chart',
 };
 
 function pick<T>(arr: T[]): T {
@@ -19,5 +19,5 @@ function pick<T>(arr: T[]): T {
 }
 
 export function generateWidgetTitle(type: WidgetType): string {
-  return `${pick(ADJECTIVES)} ${pick(NOUNS_BY_TYPE[type])}`;
+  return `${pick(ADJECTIVES)} ${TYPE_LABEL[type]}`;
 }
